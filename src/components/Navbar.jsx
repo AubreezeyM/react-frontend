@@ -1,4 +1,5 @@
 import { Link } from "react-router"
+import LogoutButton from "./LogoutButton";
 
 const Navbar = () => {
     return (
@@ -6,6 +7,7 @@ const Navbar = () => {
             <ul className="navbar-ul">
                 <li className="navbar-item"><Link to='/'>Home</Link></li>
                 <li className="navbar-item"><Link to='/login'>Login</Link></li>
+                <li className="navbar-logout"><LogoutButton /></li>
             </ul>
         </nav>
     )
