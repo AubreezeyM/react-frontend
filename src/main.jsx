@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <App />,
     children: [
       {

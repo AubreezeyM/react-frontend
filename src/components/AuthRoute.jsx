@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 
-const AuthRoute = () => {
+const AuthRoute = ({ children }) => {
     const [isAuthenticated, setAuthenticated] = useState(null);
 
     const refreshToken = async () => {
@@ -46,3 +46,5 @@ const AuthRoute = () => {
         return isAuthorized ? children : <Navigate to="/login" />;
     }
 }
+
+export default AuthRoute;

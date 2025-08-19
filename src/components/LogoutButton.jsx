@@ -18,7 +18,6 @@ const LogoutButton = () => {
             type="button"
             onClick={() => {
                 logoutCallback();
-                navigate('/')
             }}>
             Logout
         </button >
