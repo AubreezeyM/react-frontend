@@ -4,10 +4,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 import App from './App.jsx'
 import LoginPage from './pages/LoginPage.jsx';
 import HomePage from './pages/HomePage.jsx';
+import AuthRoute from './components/AuthRoute.jsx';
+import UserCard from './pages/UserPage.jsx';
+import UserPage from './pages/UserPage.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <App />,
     children: [
       {
@@ -18,6 +21,10 @@ const router = createBrowserRouter([
         path: "login",
         element: <LoginPage />
       },
+      {
+        path: "user",
+        element: <UserPage />
+      }
     ],
   },
 ])
