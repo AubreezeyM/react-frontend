@@ -1,6 +1,5 @@
-import React from "react";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const LogoutButton = () => {
     const navigate = useNavigate();
@@ -18,6 +17,7 @@ const LogoutButton = () => {
             type="button"
             onClick={() => {
                 logoutCallback();
+                navigate('/');
             }}>
             Logout
         </button >

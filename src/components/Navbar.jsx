@@ -8,6 +8,7 @@ const Navbar = () => {
                 <li className="navbar-item"><Link to='/'>Home</Link></li>
                 <li className="navbar-item"><Link to='/login'>Login</Link></li>
                 <li className="navbar-logout"><LogoutButton /></li>
+                <li className="navbar-item"><Link to='/user'>User</Link></li>
             </ul>
         </nav>
     )

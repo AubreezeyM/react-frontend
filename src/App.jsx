@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import UserCard from './components/UserCard';
+import UserCard from './pages/UserPage';
 import { Outlet } from 'react-router';
 import Navbar from './components/Navbar';
 
