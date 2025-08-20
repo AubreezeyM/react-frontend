@@ -23,7 +23,6 @@ const LoginForm = () => {
             console.log(res.data)
             localStorage.setItem(ACCESS_TOKEN, res.data.access);
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-            localStorage.setItem()
         } catch (error) {
             if (error.name === 'AbortError') {
                 console.log('Request canceled');

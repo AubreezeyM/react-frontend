@@ -2,11 +2,21 @@ import React, { useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import { userQueryOptions, profileQueryOptions } from '../queries/queryOptions'
 import AuthRoute from "../components/AuthRoute";
+import { useAuth } from "../components/AuthProvider";
 
 const UserPage = () => {
     const [id, setId] = useState(1);
-    const userQuery = useQuery(userQueryOptions(id))
-    const profileQuery = useQuery(profileQueryOptions(id))
+    const { isAuthenticated } = useAuth();
+
+    const userQuery = useQuery({
+        ...userQueryOptions(id),
+        enabled: isAuthenticated === true,
+    })
+
+    const profileQuery = useQuery({
+        ...profileQueryOptions(id),
+        enabled: isAuthenticated === true,
+    })
 
     return (
         <AuthRoute>
@@ -24,6 +34,12 @@ const UserPage = () => {
                         )}
                     </div>
                 )}
+                <button onClick={() => setId(id - 1)} className="user-next-button">
+                    Prev user
+                </button>
+                <button onClick={() => setId(id + 1)} className="user-next-button">
+                    Next user
+                </button>
             </div>
         </AuthRoute>
     )
