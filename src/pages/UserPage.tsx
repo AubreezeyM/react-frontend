@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import { userQueryOptions, profileQueryOptions } from '../queries/queryOptions'
 import AuthRoute from "../components/AuthRoute";
-import { useAuth } from "../components/AuthProvider";
+import { useAuthStore } from "../stores/useAuthStore";
 
 const UserPage = () => {
     const [id, setId] = useState(1);
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuthStore();
 
     const userQuery = useQuery({
         ...userQueryOptions(id),

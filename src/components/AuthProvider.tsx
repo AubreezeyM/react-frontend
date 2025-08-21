@@ -1,20 +1,19 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useEffect } from "react";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import { jwtDecode } from "jwt-decode";
 import api from "../api";
 
-const AuthContext = createContext();
+import type { AuthContextType } from "../types";
+import type { PropsWithChildren } from "react";
+import { useAuthStore } from "../stores/useAuthStore";
+import { useShallow } from "zustand/react/shallow";
 
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error("useAuth must be used within an AuthProvider");
-    }
-    return context;
-};
+const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(null);
+export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
+    const [isAuthenticated, setIsAuthenticated] = useAuthStore(
+        useShallow((state) => [state.isAuthenticated, state.setIsAuthenticated])
+    );
 
     const refreshToken = async () => {
         const refresh = localStorage.getItem(REFRESH_TOKEN)
@@ -61,7 +60,7 @@ export const AuthProvider = ({ children }) => {
         auth();
     }, []);
 
-    const value = {
+    const value: AuthContextType = {
         isAuthenticated,
         refreshToken,
         auth,
