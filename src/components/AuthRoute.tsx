@@ -1,9 +1,9 @@
 import React from "react";
-import { useAuth } from "./AuthProvider";
+import { useAuthStore } from "../stores/useAuthStore";
 import type { PropsWithChildren } from "react";
 
 const AuthRoute = ({ children }: PropsWithChildren) => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuthStore();
 
     if (isAuthenticated === null) {
         return <div>Loading...</div>;
