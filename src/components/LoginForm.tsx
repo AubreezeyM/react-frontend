@@ -8,7 +8,7 @@ const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassowrd] = useState('');
 
-    const submitCallback = async (e) => {
+    const submitCallback = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const res = await api.post(
@@ -24,11 +24,13 @@ const LoginForm = () => {
             localStorage.setItem(ACCESS_TOKEN, res.data.access);
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
         } catch (error) {
-            if (error.name === 'AbortError') {
+            if ((error as any).name === 'AbortError') {
                 console.log('Request canceled');
             } else {
                 console.error("Login error:", error);
-                console.log(api.headers)
+                if ((error as any).response && (error as any).response.headers) {
+                    console.log((error as any).response.headers);
+                }
             }
         }
     };

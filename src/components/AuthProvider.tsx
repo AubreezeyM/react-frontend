@@ -3,9 +3,12 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import { jwtDecode } from "jwt-decode";
 import api from "../api";
 
-const AuthContext = createContext();
+import type { AuthContextType } from "../types";
+import type { PropsWithChildren } from "react";
 
-export const useAuth = () => {
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export const useAuth = (): AuthContextType => {
     const context = useContext(AuthContext);
     if (!context) {
         throw new Error("useAuth must be used within an AuthProvider");
@@ -13,8 +16,8 @@ export const useAuth = () => {
     return context;
 };
 
-export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(null);
+export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
     const refreshToken = async () => {
         const refresh = localStorage.getItem(REFRESH_TOKEN)
@@ -61,7 +64,7 @@ export const AuthProvider = ({ children }) => {
         auth();
     }, []);
 
-    const value = {
+    const value: AuthContextType = {
         isAuthenticated,
         refreshToken,
         auth,

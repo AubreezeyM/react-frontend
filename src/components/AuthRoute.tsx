@@ -1,7 +1,8 @@
 import React from "react";
-import { useAuth } from "../components/AuthProvider";
+import { useAuth } from "./AuthProvider";
+import type { PropsWithChildren } from "react";
 
-const AuthRoute = ({ children }) => {
+const AuthRoute = ({ children }: PropsWithChildren) => {
     const { isAuthenticated } = useAuth();
 
     if (isAuthenticated === null) {
@@ -10,6 +11,5 @@ const AuthRoute = ({ children }) => {
 
     return isAuthenticated ? children : <p>Unauthorized.</p>;
 }
-
 
 export default AuthRoute;
